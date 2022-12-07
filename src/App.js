@@ -17,8 +17,8 @@ function App() {
 
   const [amount, setAmount] = useState(1);
 
- const findValue = currencies.filter(a => {
-  return a.value === currency;
+ const findValue = currencies.find(a => {
+  return a.value === currency; 
  });
 
  console.log(findValue)
