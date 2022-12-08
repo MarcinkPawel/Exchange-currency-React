@@ -10,23 +10,28 @@ function App() {
     { id: 5, value: 0.04, name: "RUB" },
     { id: 6, value: 5.02, name: "CHF" },
   ];
+
+  const [amount, setAmount] = useState(+"");
   const [currency, setRate] = useState("--");
-  const getValue = (event) => {
-    setRate(event.target.value);
+
+
+  const [result, setResult] = useState();
+
+  const getResult = (currency, amount) => {
+    const howMuch = currencies
+    .find(({ value }) => value === currency)
+    .value;
+
+    setResult({
+      getAmount: +amount,
+      rightAmount: amount / howMuch,
+    });
   };
 
-  const [amount, setAmount] = useState(1);
-
- const findValue = currencies.find(a => {
-  return a.value === currency; 
- });
-
- console.log(findValue)
- console.log(currency)
 
   const onFormSabmit = (event) => {
     event.preventDefault();
-    
+    getResult(currency, amount);
   };
 
   return (
@@ -58,7 +63,8 @@ function App() {
                   name="currencyTo"
                   id="currencyTo"
                   className="js-currnecyTo"
-                  onChange={getValue}
+                  value={currency}
+                  onChange={({ target }) => setRate(target.value)}
                 >
                   <option>--</option>
                   {currencies.map((currency) => (
@@ -72,10 +78,7 @@ function App() {
           </fieldset>
         </form>
         <div>
-          <form 
-          className="form"
-          onSubmit={onFormSabmit}
-          >
+          <form className="form" onSubmit={onFormSabmit}>
             <fieldset className="form__fieldset">
               <label htmlFor="amount" className="form__label">
                 <span className="form__label form__label--text">Amount:</span>
@@ -88,7 +91,7 @@ function App() {
                   min="0"
                   className="form__input"
                   value={amount}
-                  onChange={(event) => setAmount(event.target.value)}
+                  onChange={(e) => setAmount(e.target.value)}
                 />
               </label>
               <label htmlFor="exchangeRate" className="form__label">
@@ -99,7 +102,7 @@ function App() {
               </label>
               <input type="submit" value="Convert" className="form__submit" />
               <p className="form__result">
-                <span className="result"></span>
+                <span className="result">{result}</span>
               </p>
             </fieldset>
           </form>
