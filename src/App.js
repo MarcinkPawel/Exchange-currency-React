@@ -12,7 +12,7 @@ function App() {
   ];
 
   const [amount, setAmount] = useState(+"");
-  const [currency, setRate] = useState("--");
+  const [currency, setCurrency] = useState("--");
 
 
   const [result, setResult] = useState();
@@ -64,7 +64,7 @@ function App() {
                   id="currencyTo"
                   className="js-currnecyTo"
                   value={currency}
-                  onChange={({ target }) => setRate(target.value)}
+                  onChange={({ target }) => setCurrency(target.value)}
                 >
                   <option>--</option>
                   {currencies.map((currency) => (
