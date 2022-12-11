@@ -23,9 +23,7 @@ const Form = () => {
     getResult(currency, amount);
   };
 
-  const isExchangeRate = currencies.find(
-    ({ name }) => name === currency
-  ).rate;
+  const isExchangeRate = currencies.find(({ name }) => name === currency).rate;
 
   const getResult = (currency, amount) => {
     const chosenRate = currencies.find(({ name }) => name === currency).rate;
@@ -42,34 +40,29 @@ const Form = () => {
       <form className="form ">
         <fieldset className="form__fieldset">
           <legend className="form__legend">Currency Exchange</legend>
-            <p
-              htmlFor="currencyFrom"
-              className="form__label form__label--select"
-            >
-              From PLN
-            </p>
+          <p htmlFor="currencyFrom" className="form__label form__label--select">
+            From PLN
+          </p>
 
-            <label
-              htmlFor="currencyTo"
-              className="form__label form__label--select"
+          <label
+            htmlFor="currencyTo"
+            className="form__label form__label--select"
+          >
+            To{" "}
+            <select
+              name="currencyTo"
+              id="currencyTo"
+              className="form__select"
+              value={currency}
+              onChange={({ target }) => setCurrency(target.value)}
             >
-              To
-              {" "}
-              <select
-                name="currencyTo"
-                id="currencyTo"
-                className="form__select"
-                value={currency}
-                onChange={({ target }) => setCurrency(target.value)}
-              >
-                {currencies.map((currency) => (
-                  <option key={currency.id} value={currency.name}>
-                    {currency.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-          
+              {currencies.map((currency) => (
+                <option key={currency.id} value={currency.name}>
+                  {currency.name}
+                </option>
+              ))}
+            </select>
+          </label>
         </fieldset>
       </form>
       <div>
