@@ -17,6 +17,7 @@ Its content was built with the use of my knoweledge at that time
  - HTML
  - CSS
  - JavaScript
+ - React
  - Responsive Web Design
  - Normalize
  - BEM
