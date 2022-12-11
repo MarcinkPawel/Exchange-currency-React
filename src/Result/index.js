@@ -1,10 +1,8 @@
 import "./style.css";
 
-const Result = ({ result }) => (
+const Result = ({ result, currency }) => (
   <p className="form__result">
-    {result !== undefined && (
-      <span className="result">You will get {result}</span>
-    )}
+    <span>{result !== undefined && `You will get ${result}`}</span>
   </p>
 );
 
