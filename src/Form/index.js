@@ -2,10 +2,7 @@ import "./style.css";
 import Result from "../Result";
 import Header from "../Header";
 import Footer from "../Footer";
-<<<<<<< HEAD
 import Clock from "../Clock";
-=======
->>>>>>> ce7f5ab44a64952bccd5087abe0004ebcc819153
 import { useState } from "react";
 
 const Form = () => {
@@ -27,17 +24,12 @@ const Form = () => {
     getResult(currency, amount);
   };
 
-<<<<<<< HEAD
   const isExchangeRate = currencies.find(
     ({ name }) => name === currency
   ).rate;
-=======
-  const isExchangeRate = currencies.find(({ name }) => name === currency).rate;
->>>>>>> ce7f5ab44a64952bccd5087abe0004ebcc819153
 
   const getResult = (currency, amount) => {
     const chosenRate = currencies.find(({ name }) => name === currency).rate;
-
     setResult(amount / chosenRate);
   };
 
@@ -50,7 +42,7 @@ const Form = () => {
       <form className="form ">
         <fieldset className="form__fieldset">
           <legend className="form__legend">Currency Exchange</legend>
-<<<<<<< HEAD
+
           <Clock />
             <p
               htmlFor="currencyFrom"
@@ -80,7 +72,7 @@ const Form = () => {
               </select>
             </label>
           
-=======
+
           <p htmlFor="currencyFrom" className="form__label form__label--select">
             From PLN
           </p>
@@ -104,7 +96,7 @@ const Form = () => {
               ))}
             </select>
           </label>
->>>>>>> ce7f5ab44a64952bccd5087abe0004ebcc819153
+
         </fieldset>
       </form>
       <div>
