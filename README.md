@@ -1,6 +1,6 @@
-<<<<<<< HEAD
+
 # Getting Started with Create React App
-=======
+
 # Currency Exchange
 
 Simple currency exchange web calculator.
