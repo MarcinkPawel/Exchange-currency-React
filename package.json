@@ -1,22 +1,15 @@
 {
-<<<<<<< HEAD
-  "name": "currency-exchange",
-  "version": "0.1.0",
-  "private": true,
-=======
   "name": "exchange-currency",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://marcinkpawel.github.io/exchange-currency/",
->>>>>>> ce7f5ab44a64952bccd5087abe0004ebcc819153
+
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-<<<<<<< HEAD
-=======
+
     "gh-pages": "^4.0.0",
->>>>>>> ce7f5ab44a64952bccd5087abe0004ebcc819153
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -26,13 +19,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-<<<<<<< HEAD
-    "eject": "react-scripts eject"
-=======
+
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build",
     "predeploy": "npm run build"
->>>>>>> ce7f5ab44a64952bccd5087abe0004ebcc819153
+
   },
   "eslintConfig": {
     "extends": [
