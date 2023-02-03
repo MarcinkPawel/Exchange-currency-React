@@ -4,7 +4,7 @@
 # Currency Exchange
 
 Simple currency exchange web calculator.
-[See the project](https://marcinkpawel.github.io/currency-exchange/)
+[See the project](https://marcinkpawel.github.io/exchange-currency/)
 
 ## Usage
 
@@ -27,9 +27,6 @@ Its content was built with the use of my knoweledge at that time
 ## Contribution
 
 The final page was made thanks to great help and supervision of YouCode team. 
-
->>>>>>> ce7f5ab44a64952bccd5087abe0004ebcc819153
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -44,14 +41,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-<<<<<<< HEAD
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-=======
->>>>>>> ce7f5ab44a64952bccd5087abe0004ebcc819153
+
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
@@ -102,5 +98,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
->>>>>>> ce7f5ab44a64952bccd5087abe0004ebcc819153
+
