@@ -2,22 +2,30 @@ import { useEffect, useState } from "react";
 import "./style.css";
 
 const Clock = () => {
-  const [clockState, setClockState] = useState();
-  const [presentDate, setPresentDate] = useState();
+  const [clockState, setClockState] = useState(new Date());
+
+  function time() {
+    setClockState(new Date());
+  }
 
   useEffect(() => {
-    setInterval(() => {
-      const time = new Date();
-      let date = new Date();  
-      setPresentDate(date = date.toLocaleDateString
-        ("en-EN", 
-        {weekday: "long", month: "long", day: "numeric"}
-        ));
-      setClockState(time.toLocaleTimeString());
-    }, 1000);
+    const timerID = setInterval(time, 1000);
+    return () => {
+      clearInterval(timerID);
+    };
   }, []);
 
-  return <div className="clock">Today is {presentDate}, {clockState}</div>;
+  return (
+    <div className="clock">
+      Today is{" "}
+      {clockState.toLocaleDateString("en-EN", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+      })}
+      , {clockState.toLocaleTimeString()}
+    </div>
+  );
 };
 
 export default Clock;
