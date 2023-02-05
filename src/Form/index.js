@@ -7,12 +7,11 @@ import { useState } from "react";
 
 const Form = () => {
   const currencies = [
-    { id: 1, rate: 1, name: "PLN" },
-    { id: 2, rate: 4.86, name: "EUR" },
-    { id: 3, rate: 5.09, name: "USD" },
-    { id: 4, rate: 5.53, name: "GBP" },
-    { id: 5, rate: 0.04, name: "RUB" },
-    { id: 6, rate: 5.02, name: "CHF" },
+    { id: 1, rate: 4.86, name: "EUR" },
+    { id: 2, rate: 5.09, name: "USD" },
+    { id: 3, rate: 5.53, name: "GBP" },
+    { id: 4, rate: 0.04, name: "RUB" },
+    { id: 5, rate: 5.02, name: "CHF" },
   ];
 
   const [amount, setAmount] = useState("");
