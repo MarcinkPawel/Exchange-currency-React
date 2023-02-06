@@ -88,6 +88,10 @@
     text-align: center;
 }
 
+.form__resultField {
+    height: 45px;
+}
+
 @media(max-width: 767px) {
     .form__label {
         display: flex;

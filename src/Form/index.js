@@ -97,7 +97,9 @@ const Form = () => {
               <span className="rate">{isExchangeRate}</span>
             </label>
             <input type="submit" value="Convert" className="form__submit" />
+            <div className="form__resultField">
             <Result result={result} />
+            </div>
           </fieldset>
         </form>
         <Footer content="Alright I'm not reserved." />
