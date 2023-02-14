@@ -1,10 +1,9 @@
-import "./style.css";
+import { SumUp } from "./styled";
 
 const Result = ({ result }) => (
-  <p className="form__result">
+  <SumUp>
     <span>{result !== undefined && `You will get ${result.toFixed(2)}`}</span>
-
-  </p>
+  </SumUp>
 );
 
 export default Result;

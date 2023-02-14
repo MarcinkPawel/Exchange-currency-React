@@ -1,9 +1,9 @@
-import "./style.css";
 import Result from "../Result";
 import Header from "../Header";
 import Footer from "../Footer";
 import Clock from "../Clock";
 import { useState } from "react";
+import {Main, Fieldset, Legend, Label, Paragragh, Span, Input, Select, Submit, ResultStyled} from "./styled"
 
 const Form = () => {
   const currencies = [
@@ -34,32 +34,30 @@ const Form = () => {
   };
 
   return (
-    <div className="main">
+    <Main >
       <Header
         header="Are you going to change your address?"
         subHeader="Exchange your money first!"
       />
-      <form className="form ">
-        <fieldset className="form__fieldset">
-          <legend className="form__legend">Currency Exchange</legend>
+      <form >
+        <Fieldset>
+          <Legend>Currency Exchange</Legend>
           <Clock />
-            <p
+            <Paragragh
+              select
               htmlFor="currencyFrom"
-              className="form__label form__label--select"
             >
               From PLN
-            </p>
-
-            <label
+            </Paragragh>
+            <Label
+              select
               htmlFor="currencyTo"
-              className="form__label form__label--select"
             >
               To
               {" "}
-              <select
+              <Select
                 name="currencyTo"
                 id="currencyTo"
-                className="form__select"
                 value={currency}
                 onChange={({ target }) => setCurrency(target.value)}
               >
@@ -68,43 +66,41 @@ const Form = () => {
                     {currency.name}
                   </option>
                 ))}
-              </select>
-            </label>
-          
-        </fieldset>
+              </Select>
+            </Label>
+        </Fieldset>
       </form>
       <div>
-        <form className="form" onSubmit={onFormSabmit}>
-          <fieldset className="form__fieldset">
-            <label htmlFor="amount" className="form__label">
-              <span className="form__label form__label--text">Amount:</span>
-              <input
+        <form onSubmit={onFormSabmit}>
+          <Fieldset>
+            <Label htmlFor="amount">
+              <Span text>Amount:</Span>
+              <Input
                 type="number"
                 name="amount"
                 id="amount"
                 required
                 step="0.01"
                 min="0"
-                className="form__input"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
               />
-            </label>
-            <label htmlFor="exchangeRate" className="form__label">
-              <span className="form__label form__label--text">
+            </Label>
+            <Label htmlFor="exchangeRate">
+              <Span text>
                 Exchange rate:
-              </span>
+              </Span>
               <span className="rate">{isExchangeRate}</span>
-            </label>
-            <input type="submit" value="Convert" className="form__submit" />
-            <div className="form__resultField">
+            </Label>
+            <Submit type="submit" value="Convert" />
+            <ResultStyled>
             <Result result={result} />
-            </div>
-          </fieldset>
+            </ResultStyled>
+          </Fieldset>
         </form>
         <Footer content="Alright I'm not reserved." />
       </div>
-    </div>
+    </Main>
   );
 };
 
