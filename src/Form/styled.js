@@ -15,11 +15,8 @@ export const Main = styled.div`
 export const Fieldset = styled.fieldset`
     display: flex;
     flex-direction: column;
-    padding: 50px;
     border: 2px solid rgba(63, 36, 36, 0.329);
     border-radius: 6px;
-    padding: 5px;
-    margin: 10px; 
     
     @media(max-width: 767px) {
         display: flex;
@@ -37,12 +34,12 @@ export const Legend = styled.legend`
 `;
 
 export const forLabel = css`
-    width: 100%;
-    margin: 10px 15px;
     font-size: 18px;
     font-weight: 700;  
     display: flex;
     flex-direction: row;
+   
+   
     
     @media(max-width: 767px) {
         display: flex;
@@ -51,23 +48,30 @@ export const forLabel = css`
     }
 
     ${select => select && css`
-        padding-bottom: 10px;
+        padding: 10px;
         text-align: center;
-        margin: 20px auto 0;
+        margin: 0 auto 0;
+
     `}
 
     ${text => text && css`
-        display: inline-block;
-        width: 160px;
+        text-align: center;
+        
+        
+    `}
+    ${center => center && css`
+        justify-content: center;
     `}
 `;
 
 export const Label = styled.label`
     ${forLabel}
+
 `;
 
 export const Paragragh = styled.p`
     ${forLabel}
+    padding-top: 20px;
 `;
 
 export const Span = styled.span`
@@ -79,6 +83,7 @@ export const Input = styled.input`
     border-radius: 3px;
     border: 1px solid black;
     width: 150px;
+    align-self: center;
 
     @media(max-width: 767px) {
     max-width: 150px;
@@ -94,7 +99,7 @@ export const Select = styled.select`
     }
 `;
 
-export const Submit = styled.submit`
+export const Submit = styled.input`
     align-self: center;
     font-size: 20px;
     background-color: rgba(73, 73, 175, 0.788);

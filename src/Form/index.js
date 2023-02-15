@@ -43,19 +43,19 @@ const Form = () => {
         <Fieldset>
           <Legend>Currency Exchange</Legend>
           <Clock />
-            <Paragragh
+            <Paragragh text
               select
               htmlFor="currencyFrom"
             >
               From PLN
             </Paragragh>
-            <Label
+            <Label center
               select
               htmlFor="currencyTo"
             >
               To
               {" "}
-              <Select
+              <Select select
                 name="currencyTo"
                 id="currencyTo"
                 value={currency}
@@ -90,7 +90,7 @@ const Form = () => {
               <Span text>
                 Exchange rate:
               </Span>
-              <span className="rate">{isExchangeRate}</span>
+              <Span text>{isExchangeRate}</Span>
             </Label>
             <Submit type="submit" value="Convert" />
             <ResultStyled>
