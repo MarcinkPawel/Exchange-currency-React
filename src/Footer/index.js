@@ -1,4 +1,4 @@
-import {StyleFooter} from "./styled"
+import {  StyleFooter } from "./styled"
 
 const Footer = ({ content }) => (
   <StyleFooter>
