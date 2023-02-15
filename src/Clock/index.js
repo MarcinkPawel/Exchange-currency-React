@@ -1,25 +1,8 @@
-import { useEffect, useState } from "react";
-import {Time} from "./styled";
+import { Time } from "./styled";
+import { useCurrentDate } from "./useCurrentDate";
 
 const Clock = () => {
-  const [dateTimeState, setDateTimeState] = useState(new Date());
-
-  function time() {
-    setDateTimeState(new Date());
-  }
-
-  useEffect(() => {
-    const timerID = setInterval(time, 1000);
-    return () => {
-      clearInterval(timerID);
-    };
-  }, []);
-
-  const dateFormat = dateTimeState.toLocaleDateString("en-EN", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-  });
+  const { dateFormat, dateTimeState } = useCurrentDate();
 
   return (
     <Time>
