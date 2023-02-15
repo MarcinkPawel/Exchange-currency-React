@@ -2,7 +2,13 @@ import { Time } from "./styled";
 import { useCurrentDate } from "./useCurrentDate";
 
 const Clock = () => {
-  const { dateFormat, dateTimeState } = useCurrentDate();
+  const { dateTimeState } = useCurrentDate();
+
+  const dateFormat = dateTimeState.toLocaleDateString("en-EN", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  });
 
   return (
     <Time>

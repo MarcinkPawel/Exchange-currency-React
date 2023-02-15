@@ -14,14 +14,7 @@ export const useCurrentDate = () => {
     };
   }, []);
 
-  const dateFormat = dateTimeState.toLocaleDateString("en-EN", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-  });
-
   return {
-    dateFormat,
     dateTimeState,
   };
 };

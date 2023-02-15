@@ -3,7 +3,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import Clock from "../Clock";
 import { useState } from "react";
-import {Main, Fieldset, Legend, Label, Paragragh, Span, Input, Select, Submit, ResultStyled} from "./styled"
+import { Main, Fieldset, Legend, Label, Paragragh, Span, Input, Select, Submit, ResultStyled } from "./styled"
 
 const Form = () => {
   const currencies = [
