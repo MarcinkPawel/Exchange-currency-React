@@ -1,9 +1,19 @@
-import Result from "../Result";
-import Header from "../Header";
-import Footer from "../Footer";
-import Clock from "../Clock";
+import Result from "./Result";
+import Clock from "./Clock";
 import { useState } from "react";
-import { Main, Fieldset, Legend, Label, Paragragh, Span, Input, Select, Submit, ResultStyled } from "./styled"
+import {
+  Main,
+  Fieldset,
+  Title,
+  Label,
+  Span,
+  Input,
+  Select,
+  SubmitButton,
+  ResultStyled,
+  TextSpan,
+  ExchangeSpan,
+} from "./styled";
 
 const Form = () => {
   const currencies = [
@@ -23,9 +33,7 @@ const Form = () => {
     getResult(currency, amount);
   };
 
-  const isExchangeRate = currencies.find(
-    ({ name }) => name === currency
-  ).rate;
+  const isExchangeRate = currencies.find(({ name }) => name === currency).rate;
 
   const getResult = (currency, amount) => {
     const chosenRate = currencies.find(({ name }) => name === currency).rate;
@@ -34,72 +42,56 @@ const Form = () => {
   };
 
   return (
-    <Main >
-      <Header
-        header="Are you going to change your address?"
-        subHeader="Exchange your money first!"
-      />
-      <form >
+    <Main>
+      <form onSubmit={onFormSabmit}>
         <Fieldset>
-          <Legend>Currency Exchange</Legend>
           <Clock />
-            <Paragragh text
-              select
-              htmlFor="currencyFrom"
+          <Title>Currency Exchange</Title>
+          <Label htmlFor="amount">
+            <Span limit>Amount*:</Span>
+            <Input
+              type="number"
+              name="amount"
+              id="amount"
+              required
+              step="0.01"
+              min="0"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+            />
+          </Label>
+          <Label htmlFor="currencyTo">
+            <Span limit>Currency:</Span>{" "}
+            <Select
+              name="currencyTo"
+              id="currencyTo"
+              value={currency}
+              onChange={({ target }) => setCurrency(target.value)}
             >
-              From PLN
-            </Paragragh>
-            <Label center
-              select
-              htmlFor="currencyTo"
-            >
-              To
-              {" "}
-              <Select select
-                name="currencyTo"
-                id="currencyTo"
-                value={currency}
-                onChange={({ target }) => setCurrency(target.value)}
-              >
-                {currencies.map((currency) => (
-                  <option key={currency.id} value={currency.name}>
-                    {currency.name}
-                  </option>
-                ))}
-              </Select>
-            </Label>
+              {currencies.map((currency) => (
+                <option key={currency.id} value={currency.name}>
+                  {currency.name}
+                </option>
+              ))}
+            </Select>
+          </Label>
+          <Label htmlFor="exchangeRate">
+            <ExchangeSpan>
+              Exchange rate for CURRENCY is {isExchangeRate}.
+            </ExchangeSpan>
+          </Label>
+          <SubmitButton type="submit" value="Convert">
+            Convert
+          </SubmitButton>
+          <TextSpan>
+            The currency converter tool allows you to see the conversion of
+            currency values based on exchange rates from DATA.
+          </TextSpan>
+          <ResultStyled>
+            <Result result={result} />
+          </ResultStyled>
         </Fieldset>
       </form>
-      <div>
-        <form onSubmit={onFormSabmit}>
-          <Fieldset>
-            <Label htmlFor="amount">
-              <Span text>Amount:</Span>
-              <Input
-                type="number"
-                name="amount"
-                id="amount"
-                required
-                step="0.01"
-                min="0"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-              />
-            </Label>
-            <Label htmlFor="exchangeRate">
-              <Span text>
-                Exchange rate:
-              </Span>
-              <Span text>{isExchangeRate}</Span>
-            </Label>
-            <Submit type="submit" value="Convert" />
-            <ResultStyled>
-            <Result result={result} />
-            </ResultStyled>
-          </Fieldset>
-        </form>
-        <Footer content="Alright I'm not reserved." />
-      </div>
     </Main>
   );
 };
