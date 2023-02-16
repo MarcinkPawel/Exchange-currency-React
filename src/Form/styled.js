@@ -99,7 +99,7 @@ export const Select = styled.select`
     }
 `;
 
-export const Submit = styled.input`
+export const Submit = styled.button`
     align-self: center;
     font-size: 20px;
     background-color: rgba(73, 73, 175, 0.788);
