@@ -1,6 +1,6 @@
 import Result from "./Result";
 import Clock from "./Clock";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Main,
   Fieldset,
@@ -14,31 +14,46 @@ import {
   TextSpan,
   ExchangeSpan,
 } from "./styled";
+import axios from "axios";
 
 const Form = () => {
-  const currencies = [
-    { id: 1, rate: 4.86, name: "EUR" },
-    { id: 2, rate: 5.09, name: "USD" },
-    { id: 3, rate: 5.53, name: "GBP" },
-    { id: 4, rate: 0.04, name: "RUB" },
-    { id: 5, rate: 5.02, name: "CHF" },
-  ];
-
+  const [rates, setRates] = useState([]);
+  const [toCurrency, setToCurreny] = useState();
   const [amount, setAmount] = useState("");
-  const [currency, setCurrency] = useState(currencies[0].name);
+  const [exchangeRate, setEchangeRate] = useState();
   const [result, setResult] = useState();
+
+
+  const url = "https://api.exchangerate.host/latest?base=PLN";
+
+  useEffect(() => {
+    axios.get(url).then((response) => {
+      const firstCurrency = Object.keys(response.data.rates)[0];
+      setRates([
+        ...Object.keys(response.data.rates),
+      ]);
+      
+      setToCurreny(firstCurrency);
+      setEchangeRate(response.data.rates[firstCurrency]);
+    });
+  }, []);
+
+console.log(exchangeRate)
+
+  // const currencies = [
+  //   { id: 1, rate: 4.86, name: "EUR" },
+  //   { id: 2, rate: 5.09, name: "USD" },
+  //   { id: 3, rate: 5.53, name: "GBP" },
+  //   { id: 4, rate: 0.04, name: "RUB" },
+  //   { id: 5, rate: 5.02, name: "CHF" },
+  // ];
 
   const onFormSabmit = (event) => {
     event.preventDefault();
-    getResult(currency, amount);
+    getResult(exchangeRate, amount);
   };
-
-  const isExchangeRate = currencies.find(({ name }) => name === currency).rate;
-
-  const getResult = (currency, amount) => {
-    const chosenRate = currencies.find(({ name }) => name === currency).rate;
-
-    setResult(amount / chosenRate);
+  const getResult = (exchangeRate, amount) => {
+    setResult(amount * exchangeRate);
   };
 
   return (
@@ -56,6 +71,7 @@ const Form = () => {
               required
               step="0.01"
               min="0"
+              placeholder="PLN"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
             />
@@ -65,20 +81,19 @@ const Form = () => {
             <Select
               name="currencyTo"
               id="currencyTo"
-              value={currency}
-              onChange={({ target }) => setCurrency(target.value)}
+              value={toCurrency}
+              onChange={({ target }) => setToCurreny(target.value)}
             >
-              {currencies.map((currency) => (
-                <option key={currency.id} value={currency.name}>
-                  {currency.name}
+              {rates.map((option) => (
+                <option key={option} value={option}>
+                  {option} - {exchangeRate}
                 </option>
               ))}
             </Select>
           </Label>
           <Label htmlFor="exchangeRate">
             <ExchangeSpan>
-              Exchange rate for CURRENCY is {isExchangeRate}.
-            </ExchangeSpan>
+              {"Exchange rate for"} {toCurrency} {"is"} {exchangeRate}            </ExchangeSpan>
           </Label>
           <SubmitButton type="submit" value="Convert">
             Convert
