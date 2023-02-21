@@ -1,6 +1,7 @@
 import Result from "./Result";
 import Clock from "./Clock";
-import { useState, useEffect } from "react";
+import Loading from "./Loading";
+import { useState } from "react";
 import {
   Main,
   Fieldset,
@@ -14,63 +15,23 @@ import {
   TextSpan,
   ExchangeSpan,
 } from "./styled";
-import axios from "axios";
+
+import { useRatesData } from "./useRatesData";
 
 const Form = () => {
-  const [rates, setRates] = useState([]);
-  const [toCurrency, setToCurreny] = useState();
+
   const [amount, setAmount] = useState("");
-  const [exchangeRate, setEchangeRate] = useState();
   const [result, setResult] = useState();
+  const {
+    rates,
+    toCurrency,
+    isExchangeRate,
+    date,
+    isLoading,
+    handleCurrencyChange,
+  } = useRatesData();
 
-
-  const url = "https://api.exchangerate.host/latest?base=PLN";
-
-  const fetchData = () => {
-    return axios
-      .get(url)
-      .then((response) => setRates(response.data.rates));}
-
-useEffect(()=> {
-  fetchData();
-  const firstCurrency = Object.keys(rates)[46];
-  setToCurreny(firstCurrency)
-}, []);
-
-const firstCurrency = Object.keys(rates)[46];
-const isExchangeRate = rates[toCurrency];
-
-console.log(isExchangeRate)
-
-  // useEffect(() => {
-  //   fetch(url)
-  //   .then(response => response.json())
-  //   .then(data =>  {
-  //     const firstCurrency = Object.keys(data.rates)[0]
-  //     setRates(data.rates);
-  //     setEchangeRate(data.rates[firstCurrency]);
-  //     setToCurreny(firstCurrency)
-  //   });
-  // }, []);
-
-// function handleExchangeRates(toCurrency) {
-// }
-
-
-
-// const firstCurrency = Object.keys(rates)[0];
-
-
-// console.log(exchangeRate)
-
-  // const currencies = [
-  //   { id: 1, rate: 4.86, name: "EUR" },
-  //   { id: 2, rate: 5.09, name: "USD" },
-  //   { id: 3, rate: 5.53, name: "GBP" },
-  //   { id: 4, rate: 0.04, name: "RUB" },
-  //   { id: 5, rate: 5.02, name: "CHF" },
-  // ];
-
+  
   const onFormSabmit = (event) => {
     event.preventDefault();
     getResult(isExchangeRate, amount);
@@ -78,9 +39,12 @@ console.log(isExchangeRate)
   const getResult = (isExchangeRate, amount) => {
     setResult(amount * isExchangeRate);
   };
-
+ 
   return (
     <Main>
+      {isLoading ? (
+        <Loading />
+      ) : (
       <form onSubmit={onFormSabmit}>
         <Fieldset>
           <Clock />
@@ -105,33 +69,35 @@ console.log(isExchangeRate)
               name="currencyTo"
               id="currencyTo"
               value={toCurrency}
-              onChange={({ target }) => setToCurreny(target.value)}
+              onChange={handleCurrencyChange}
             >
               {Object.keys(rates).map((option) => (
                 <option key={option} value={option}>
                   {option}
-                </option>               
+                </option>
               ))}
             </Select>
           </Label>
           <Label htmlFor="exchangeRate">
             <ExchangeSpan>
-              Exchange rate for {toCurrency} is {isExchangeRate}</ExchangeSpan>
+              Exchange rate for {toCurrency} is{" "}
+              {isExchangeRate !== null && isExchangeRate.toFixed(2)}
+            </ExchangeSpan>
           </Label>
           <SubmitButton type="submit" value="Convert">
             Convert
           </SubmitButton>
           <TextSpan>
             The currency converter tool allows you to see the conversion of
-            currency values based on exchange rates from DATA.
+            currency values based on exchange rates from <strong>{date}</strong>
+            .
           </TextSpan>
           <ResultStyled>
-            <Result 
-            result={result}
-            currency={toCurrency} />
+            <Result result={result} currency={toCurrency} />
           </ResultStyled>
         </Fieldset>
       </form>
+      )}
     </Main>
   );
 };
