@@ -26,19 +26,42 @@ const Form = () => {
 
   const url = "https://api.exchangerate.host/latest?base=PLN";
 
-  useEffect(() => {
-    axios.get(url).then((response) => {
-      const firstCurrency = Object.keys(response.data.rates)[0];
-      setRates([
-        ...Object.keys(response.data.rates),
-      ]);
-      
-      setToCurreny(firstCurrency);
-      setEchangeRate(response.data.rates[firstCurrency]);
-    });
-  }, []);
+  const fetchData = () => {
+    return axios
+      .get(url)
+      .then((response) => setRates(response.data.rates));}
 
-console.log(exchangeRate)
+useEffect(()=> {
+  fetchData();
+  const firstCurrency = Object.keys(rates)[46];
+  setToCurreny(firstCurrency)
+}, []);
+
+const firstCurrency = Object.keys(rates)[46];
+const isExchangeRate = rates[toCurrency];
+
+console.log(isExchangeRate)
+
+  // useEffect(() => {
+  //   fetch(url)
+  //   .then(response => response.json())
+  //   .then(data =>  {
+  //     const firstCurrency = Object.keys(data.rates)[0]
+  //     setRates(data.rates);
+  //     setEchangeRate(data.rates[firstCurrency]);
+  //     setToCurreny(firstCurrency)
+  //   });
+  // }, []);
+
+// function handleExchangeRates(toCurrency) {
+// }
+
+
+
+// const firstCurrency = Object.keys(rates)[0];
+
+
+// console.log(exchangeRate)
 
   // const currencies = [
   //   { id: 1, rate: 4.86, name: "EUR" },
@@ -50,10 +73,10 @@ console.log(exchangeRate)
 
   const onFormSabmit = (event) => {
     event.preventDefault();
-    getResult(exchangeRate, amount);
+    getResult(isExchangeRate, amount);
   };
-  const getResult = (exchangeRate, amount) => {
-    setResult(amount * exchangeRate);
+  const getResult = (isExchangeRate, amount) => {
+    setResult(amount * isExchangeRate);
   };
 
   return (
@@ -84,16 +107,16 @@ console.log(exchangeRate)
               value={toCurrency}
               onChange={({ target }) => setToCurreny(target.value)}
             >
-              {rates.map((option) => (
+              {Object.keys(rates).map((option) => (
                 <option key={option} value={option}>
-                  {option} - {exchangeRate}
-                </option>
+                  {option}
+                </option>               
               ))}
             </Select>
           </Label>
           <Label htmlFor="exchangeRate">
             <ExchangeSpan>
-              {"Exchange rate for"} {toCurrency} {"is"} {exchangeRate}            </ExchangeSpan>
+              Exchange rate for {toCurrency} is {isExchangeRate}</ExchangeSpan>
           </Label>
           <SubmitButton type="submit" value="Convert">
             Convert
@@ -103,7 +126,9 @@ console.log(exchangeRate)
             currency values based on exchange rates from DATA.
           </TextSpan>
           <ResultStyled>
-            <Result result={result} />
+            <Result 
+            result={result}
+            currency={toCurrency} />
           </ResultStyled>
         </Fieldset>
       </form>

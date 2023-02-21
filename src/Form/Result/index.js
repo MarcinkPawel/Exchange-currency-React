@@ -1,8 +1,8 @@
 import { SumUp } from "./styled";
 
-const Result = ({ result }) => (
+const Result = ({ result, currency }) => (
   <SumUp>
-    <span>{result !== undefined && `You will get ${result.toFixed(2)}`}</span>
+    <span>{result !== undefined && `You will get ${result.toFixed(2)} ${currency}`}</span>
   </SumUp>
 );
 
