@@ -15,7 +15,6 @@ import {
   TextSpan,
   ExchangeSpan,
 } from "./styled";
-
 import { useRatesData } from "./useRatesData";
 
 const Form = () => {
@@ -31,7 +30,6 @@ const Form = () => {
     handleCurrencyChange,
   } = useRatesData();
 
-  
   const onFormSabmit = (event) => {
     event.preventDefault();
     getResult(isExchangeRate, amount);
