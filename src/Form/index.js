@@ -1,6 +1,7 @@
 import Result from "./Result";
 import Clock from "./Clock";
 import Loading from "./Loading";
+import ErrorWarning from "./ErrorWarning";
 import { useState } from "react";
 import {
   Main,
@@ -27,6 +28,7 @@ const Form = () => {
     isExchangeRate,
     date,
     isLoading,
+    isError,
     handleCurrencyChange,
   } = useRatesData();
 
@@ -47,7 +49,9 @@ const Form = () => {
           <Title>Currency Exchange</Title>
           {isLoading ? 
             (<Loading />)
-          : ( 
+          : isError ? 
+          ( <ErrorWarning />)
+          : (
         <>
           <Label htmlFor="amount">
             <Span limit>Amount*:</Span>
