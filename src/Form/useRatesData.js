@@ -6,7 +6,7 @@ export const useRatesData = () => {
   const [toCurrency, setToCurrency] = useState();
   const [isExchangeRate, setIsExchangeRate] = useState(null);
   const [date, setDate] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const url = "https://api.exchangerate.host/latest?base=PLN";
 
@@ -16,7 +16,7 @@ export const useRatesData = () => {
             const response = await axios.get(url);
             setRates(response.data.rates);
             setDate(response.data.date);
-            setIsLoading(false);
+            setIsLoading(true);
             setToCurrency("EUR");
         } catch (error) {
             console.error(
@@ -36,9 +36,10 @@ export const useRatesData = () => {
     }, [toCurrency, rates]);
 
     useEffect(() => {
+        setIsLoading(true);
         const timeoutId = setTimeout(() => {
             setIsLoading(false);
-        }, 6000);
+        }, 3000);
         return () => clearTimeout(timeoutId);
     }, []);
 

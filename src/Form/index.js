@@ -40,13 +40,15 @@ const Form = () => {
  
   return (
     <Main>
-      {isLoading ? (
-        <Loading />
-      ) : (
+     
       <form onSubmit={onFormSabmit}>
         <Fieldset>
           <Clock />
           <Title>Currency Exchange</Title>
+          {isLoading ? 
+            (<Loading />)
+          : ( 
+        <>
           <Label htmlFor="amount">
             <Span limit>Amount*:</Span>
             <Input
@@ -93,9 +95,11 @@ const Form = () => {
           <ResultStyled>
             <Result result={result} currency={toCurrency} />
           </ResultStyled>
+       </> 
+       )}
         </Fieldset>
       </form>
-      )}
+      
     </Main>
   );
 };

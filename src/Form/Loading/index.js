@@ -1,11 +1,14 @@
-import { Text } from "./styled";
+import { Text, Frame } from "./styled";
 
 const Loading = () => {
-    <Text>Loading... Lorem ipsum, dolor sit amet consectetur 
-        adipisicing elit. Alias molestiae nisi voluptatem 
-        laborum quaerat minus iusto sequi libero. 
-        Odio, accusamus vitae. Reprehenderit velit ad aperiam enim,
-         aliquid doloribus eius accusamus!</Text>
+  return (
+    <Frame>
+      <Text>
+        I have already called for the Money-changer, please give old chap a
+        second!&#129488;
+      </Text>
+    </Frame>
+  );
 };
 
 export default Loading;
