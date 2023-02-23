@@ -40,7 +40,6 @@ export const useRatesData = () => {
     setIsLoading(true);
     const timeoutId = setTimeout(() => {
       setIsLoading(false);
-      setIsError(true)
     }, 3000);
     return () => clearTimeout(timeoutId);
   }, []);
