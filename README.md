@@ -1,6 +1,6 @@
 # Currency Exchange
 
-Simple currency exchange web calculator. [See the project](https://marcinkpawel.github.io/Exchange-currency-React/)
+Simple currency exchange web calculator. [See the project](https://marcinkpawel.github.io/exchange-currency/)
 
 ![currencyExchange](https://user-images.githubusercontent.com/103523918/220674501-9d2bf4d2-eace-4665-ac13-a2c89ab5b6cf.gif)
 
